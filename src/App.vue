@@ -25,12 +25,21 @@ const options = [
     value: 'high'
   }
 ]
+
+const handleChangeAddInputVal = (value: string) => {
+  console.log({ value })
+  testing.inputValue = value
+}
 </script>
 
 <template>
   <AddText tag="h1">New Task</AddText>
   <AddButton type="button">Testing</AddButton>
-  <AddInput placeholder="Enter something..." v-model="testing.inputValue" />
+  <AddInput
+    placeholder="Enter something..."
+    :model-value="testing.inputValue"
+    @change-val="handleChangeAddInputVal"
+  />
   <AddTextArea
     placeholder="Enter description"
     v-model="testing.textAreaValue"
