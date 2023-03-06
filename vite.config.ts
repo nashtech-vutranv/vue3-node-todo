@@ -16,6 +16,6 @@ export default defineConfig({
   base: '/vue3-node-todo/',
   server: {
     https: true,
-    port: 3000
+    port: 3001
   }
 })

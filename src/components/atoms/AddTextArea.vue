@@ -12,10 +12,7 @@ const props = defineProps(useCustomField.textAreaProps)
     :class="props.classes"
     :value="props.modelValue"
     @input="
-      $emit(
-        'update:props.modelValue',
-        ($event.target as HTMLInputElement).value
-      )
+      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
     "
   />
 </template>

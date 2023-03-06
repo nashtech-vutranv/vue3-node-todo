@@ -1,21 +1,14 @@
 <script setup lang="ts">
+import { toRefs } from 'vue'
 import useCustomField from '@/composable/useCustomField'
 const props = defineProps(useCustomField.inputProps)
+const { type, id, name, placeholder, classes, modelValue } = toRefs(props)
+defineEmits(['changeVal'])
 </script>
 
 <template>
   <input
-    :type="props.type"
-    :id="props.id"
-    :name="props.name"
-    :placeholder="props.placeholder"
-    :class="props.classes"
-    :value="props.modelValue"
-    @input="
-      $emit(
-        'update:props.modelValue',
-        ($event.target as HTMLInputElement).value
-      )
-    "
+    v-bind="{ type, id, name, placeholder, classes, value: modelValue }"
+    @input="$emit('changeVal', ($event.target as HTMLInputElement).value)"
   />
 </template>
