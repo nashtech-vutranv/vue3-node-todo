@@ -14,6 +14,6 @@ module.exports = {
   },
   rules: {
     quotes: [2, 'single', { avoidEscape: true }],
-    'prettier/prettier': ['error', { semi: false }]
+    'prettier/prettier': ['error', { semi: false, endOfLine: 'auto' }]
   }
 }

@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { toRefs } from 'vue'
 import useCustomField from '@/composable/useCustomField'
 const props = defineProps(useCustomField.selectProps)
+
+const { id, name, classes, modelValue, options } = toRefs(props)
 </script>
 
 <template>
   <select
-    :id="props.id"
-    :name="props.name"
-    :class="props.classes"
-    :value="props.modelValue"
+    :id="id"
+    :name="name"
+    :class="classes"
+    :value="modelValue"
     @input="
       $emit('update:modelValue', ($event.target as HTMLInputElement).value)
     "
