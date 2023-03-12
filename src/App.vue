@@ -27,7 +27,6 @@ const options = [
 ]
 
 const handleChangeAddInputVal = (value: string) => {
-  console.log({ value })
   testing.inputValue = value
 }
 </script>
@@ -47,13 +46,18 @@ const handleChangeAddInputVal = (value: string) => {
   <AddSelect :options="options" v-model="testing.selectValue" />
   <p>{{ testing }}</p>
 
-  <input-field id="data-test-input-id" v-model="testing.inputField" />
+  <input-field
+    id="data-test-input-id"
+    v-model="testing.inputField"
+    tag="span"
+  />
 
   <text-area-field
     label="Address"
     id="address"
     name="address"
     placeholder="Enter smth"
+    tag="span"
     v-model="testing.textAreaFieldValue"
   />
 </template>

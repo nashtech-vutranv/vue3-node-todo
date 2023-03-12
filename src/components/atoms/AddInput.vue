@@ -3,7 +3,7 @@ import { toRefs } from 'vue'
 import useCustomField from '@/composable/useCustomField'
 const props = defineProps(useCustomField.inputProps)
 const { type, id, name, placeholder, classes, modelValue } = toRefs(props)
-defineEmits(['changeVal'])
+// defineEmits(['changeVal'])
 </script>
 
 <template>

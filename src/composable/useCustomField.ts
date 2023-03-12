@@ -1,17 +1,7 @@
 import type { PropType } from 'vue'
-
-type ButtonTypes = 'button' | 'submit' | 'reset' | undefined
-type InputTypes =
-  | 'text'
-  | 'email'
-  | 'password'
-  | 'checkbox'
-  | 'radio'
-  | undefined
-type OptionType = {
-  label: string
-  value: string
-}
+import type { ButtonTypes } from '@/interface/Button'
+import type { InputTypes } from '@/interface/Input'
+import type { SelectType } from '@/interface/Select'
 
 const commonStrNoRequired = {
   type: String,
@@ -53,7 +43,7 @@ const selectProps = {
   classes: commonStrNoRequired,
   modelValue: commonStrNoRequired,
   options: {
-    type: Array<OptionType>,
+    type: Array<SelectType>,
     default: true
   }
 }
