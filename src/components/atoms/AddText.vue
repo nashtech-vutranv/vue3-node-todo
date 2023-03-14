@@ -7,7 +7,7 @@ const getForProps = computed(() => (props.tag === 'label' ? props.for : null))
 </script>
 
 <template>
-  <component class="add-text" :is="tag" :for="getForProps">
+  <component class="add-text" :is="props.tag" :for="getForProps">
     <slot />
   </component>
 </template>

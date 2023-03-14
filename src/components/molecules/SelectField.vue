@@ -1,30 +1,29 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 import AddText from '../atoms/AddText.vue'
-import AddInput from '../atoms/AddInput.vue'
+import AddSelect from '../atoms/AddSelect.vue'
 import useCustomField from '@/composable/useCustomField'
 
 const props = defineProps({
-  ...useCustomField.inputProps,
   ...useCustomField.textProps,
+  ...useCustomField.selectProps,
   label: useCustomField.commonStrNoRequired
 })
 
-const { type, id, name, placeholder, classes, modelValue, label } =
-  toRefs(props)
+const { id, name, classes, modelValue, options, placeholder } = toRefs(props)
+
+const emits = defineEmits(['changeSelectVal'])
 </script>
 
 <template>
   <add-text tag="label" :for="id">{{ `${label}: ` }}</add-text>
-  <add-input
-    :type="type"
+  <add-select
     :id="id"
     :name="name"
-    :placeholder="placeholder"
     :class="classes"
     :value="modelValue"
-    @input="
-      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-    "
-  />
+    :options="options"
+    :placeholder="placeholder"
+    @input="emits('changeSelectVal', $event)"
+  ></add-select>
 </template>

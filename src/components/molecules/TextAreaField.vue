@@ -11,8 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="ml-textarea-field"></div>
-  <add-text tag="label" :for="id">{{ label }}</add-text>
+  <add-text tag="label" :for="id">{{ `${label}: ` }}</add-text>
   <add-text-area
     :id="props.id"
     :name="props.name"

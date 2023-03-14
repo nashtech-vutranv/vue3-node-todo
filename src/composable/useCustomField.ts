@@ -45,6 +45,17 @@ const selectProps = {
   options: {
     type: Array<SelectType>,
     default: true
+  },
+  placeholder: commonStrNoRequired
+}
+
+const checkboxProps = {
+  id: commonStrNoRequired,
+  name: commonStrNoRequired,
+  classes: commonStrNoRequired,
+  modelValue: {
+    type: Boolean,
+    required: true
   }
 }
 
@@ -73,6 +84,7 @@ export default {
   buttonProps,
   inputProps,
   selectProps,
+  checkboxProps,
   textProps,
   textAreaProps,
   commonStrNoRequired

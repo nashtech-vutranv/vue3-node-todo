@@ -1,21 +1,13 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import AddButton from './components/atoms/AddButton.vue'
-import AddInput from './components/atoms/AddInput.vue'
-import AddTextArea from './components/atoms/AddTextArea.vue'
-import AddText from './components/atoms/AddText.vue'
-import AddSelect from './components/atoms/AddSelect.vue'
+import { ref, reactive } from 'vue'
 import TextAreaField from './components/molecules/TextAreaField.vue'
 import InputField from './components/molecules/InputField.vue'
+import SelectField from './components/molecules/SelectField.vue'
+import CheckboxField from './components/molecules/CheckboxField.vue'
 
-const testing = reactive({
-  inputValue: '',
-  textAreaValue: '',
-  selectValue: '',
-  inputField: '',
-  textAreaFieldValue: ''
-})
-const options = [
+const inputFieldVal = ref('')
+const textAreaFieldVal = ref('')
+const selectFieldOptions = reactive([
   {
     label: 'normal',
     value: 'normal'
@@ -24,41 +16,66 @@ const options = [
     label: 'high',
     value: 'high'
   }
-]
+])
+const selectField = ref('')
+const checkboxField = ref<boolean>(false)
 
-const handleChangeAddInputVal = (value: string) => {
-  testing.inputValue = value
+function handleChangeSelectValue(event: any) {
+  selectField.value = event.target.value
+  if (event.target.value !== '') {
+    event.target.classList.add('custom-select')
+  }
+}
+
+function handleUpdateCheckBoxValue(value: boolean) {
+  checkboxField.value = value
 }
 </script>
 
 <template>
-  <AddText tag="h1">New Task</AddText>
-  <AddButton type="button">Testing</AddButton>
-  <AddInput
-    placeholder="Enter something..."
-    :model-value="testing.inputValue"
-    @change-val="handleChangeAddInputVal"
-  />
-  <AddTextArea
-    placeholder="Enter description"
-    v-model="testing.textAreaValue"
-  />
-  <AddSelect :options="options" v-model="testing.selectValue" />
-  <p>{{ testing }}</p>
-
   <input-field
-    id="data-test-input-id"
-    v-model="testing.inputField"
+    id="name"
+    v-model="inputFieldVal"
     tag="span"
+    label="Name"
+    placeholder="Enter name"
+    name="name"
   />
+  <br />
+  <br />
 
   <text-area-field
     label="Address"
     id="address"
     name="address"
-    placeholder="Enter smth"
+    placeholder="Enter address"
     tag="span"
-    v-model="testing.textAreaFieldValue"
+    v-model="textAreaFieldVal"
+  />
+  <br />
+  <br />
+
+  <select-field
+    tag="span"
+    label="Priority"
+    id="select"
+    name="select"
+    placeholder="Select priority"
+    :options="selectFieldOptions"
+    :model-value="selectField"
+    @change-select-val="handleChangeSelectValue"
+  />
+
+  <br />
+  <br />
+
+  <checkbox-field
+    id="checkbox"
+    name="checkbox"
+    tag="span"
+    :model-value="checkboxField"
+    label="Tick or remove ur selection"
+    @update-checkbox-val="handleUpdateCheckBoxValue"
   />
 </template>
 
