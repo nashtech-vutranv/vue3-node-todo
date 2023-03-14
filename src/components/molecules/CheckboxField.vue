@@ -5,26 +5,26 @@ import AddInput from '../atoms/AddInput.vue'
 import useCustomField from '@/composable/useCustomField'
 
 const props = defineProps({
-  ...useCustomField.inputProps,
+  ...useCustomField.checkboxProps,
   ...useCustomField.textProps,
   label: useCustomField.commonStrNoRequired
 })
 
-const { type, id, name, placeholder, classes, modelValue, label } =
-  toRefs(props)
+const emits = defineEmits(['updateCheckboxVal'])
+
+const { id, name, classes, modelValue, label } = toRefs(props)
 </script>
 
 <template>
-  <add-text tag="label" :for="id">{{ `${label}: ` }}</add-text>
   <add-input
-    :type="type"
+    type="checkbox"
     :id="id"
     :name="name"
-    :placeholder="placeholder"
     :class="classes"
     :value="modelValue"
-    @input="
-      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+    @change="
+      emits('updateCheckboxVal', ($event.target as HTMLInputElement).checked)
     "
   />
+  <add-text tag="label" :for="id">{{ `${label}: ` }}</add-text>
 </template>

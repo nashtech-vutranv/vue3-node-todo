@@ -9,6 +9,8 @@ const { type, id, name, placeholder, classes, modelValue } = toRefs(props)
 <template>
   <input
     v-bind="{ type, id, name, placeholder, classes, value: modelValue }"
-    @input="$emit('changeVal', ($event.target as HTMLInputElement).value)"
+    @input="
+      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+    "
   />
 </template>
